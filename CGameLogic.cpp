@@ -69,12 +69,8 @@ bool CGameLogic::canExit(CActor* Actor, CMap* Map)
 
 bool CGameLogic::canMove(CMovementOrAtack* Action, CMap* Map)
 {
-	switch (Map->getTypeOfCell(Action->getDestination()))
-	{
-	case TypeOfCell::Empty:
-	case TypeOfCell::Wall:
-		return false;
-	default:
-		return true;
-	}
+	if (Action->getVectorOfMovement().getVectorLength() > 1)
+		return Map->isCanGoByDiagonal(Action->getStartOfMovement(), Action->getDestination());
+	else
+		return (Map->getTypeOfIteration(Action->getDestination()) == TypeIteration::Move);
 }

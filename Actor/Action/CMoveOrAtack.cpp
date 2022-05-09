@@ -9,6 +9,11 @@ CMovementOrAtack::CMovementOrAtack(CActorAction* Action, CPosition NewFrom, CPos
 	delete Action;
 }
 
+CPosition CMovementOrAtack::getStartOfMovement()
+{
+	return From;
+}
+
 CPosition CMovementOrAtack::getDestination()
 {
 	return To;

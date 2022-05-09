@@ -13,6 +13,8 @@ protected:
 public:
 	CMovementOrAtack(CActorAction* Action, CPosition NewFrom, CPosition NewTo);
 
+	CPosition getStartOfMovement();
+
 	CPosition getDestination();
 
 	CPosition getVectorOfMovement();
