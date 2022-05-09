@@ -29,18 +29,13 @@ private:
 	CActorStack* ActorsStack;
 
 public:
-	//main
 	void startGame();
 
 	void getPlayerInput();
 
-	//end main
 	CGame();
 
 	~CGame();
-
-	//React on input
-	void getInput();
 
 	void provideGameLogic();
 

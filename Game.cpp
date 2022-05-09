@@ -48,71 +48,6 @@ bool isWindowsSizeOrPositionChanges(CPosition PrevWindowSize, CPosition NewWindo
 	return true;
 }
 
-void CGame::getInput()
-{
-	InputType Event;
-	int PrevWindowsSizeX, PrevWindowsSizeY, NewWindowsSizeX, NewWindowsSizeY;//For Windows size
-	int PrevWindowsPositionX, PrevWindowsPositionY, NewWindowsPosX, NewWindowsPosY;//For Windows Position
-	
-	SDL_GetWindowPosition(Screen->getWindow(), &PrevWindowsPositionX, &PrevWindowsPositionY);
-	SDL_GetWindowSize(Screen->getWindow(), &PrevWindowsSizeX, &PrevWindowsSizeY);
-
-	do
-	{
-		SDL_GetWindowSize(this->Screen->getWindow(), &NewWindowsSizeX, &NewWindowsSizeY);
-		SDL_GetWindowPosition(this->Screen->getWindow(), &NewWindowsPosX, &NewWindowsPosY);
-		
-		Event = KeyboardInput->getInput();
-		switch (Event)
-		{
-		case InputType::Quit:
-			this->isRunning = false;
-			return;
-
-		case InputType::MovementDownLeft:
-			if (GameMap->isCanGoByDiagonal(Player->getHeroPosition(), CPosition{ Player->getHeroPosition().X - 1, Player->getHeroPosition().Y + 1 }) == false)
-				return;
-			this->moveHero(Event);
-			return;
-		case InputType::MovementDownRight:
-			if (GameMap->isCanGoByDiagonal(Player->getHeroPosition(), CPosition{ Player->getHeroPosition().X + 1, Player->getHeroPosition().Y + 1 }) == false)
-				return;
-			this->moveHero(Event);
-			return;
-		case InputType::MovementUpRight:
-			if (GameMap->isCanGoByDiagonal(Player->getHeroPosition(), CPosition{ Player->getHeroPosition().X + 1, Player->getHeroPosition().Y - 1}) == false)
-				return;
-			this->moveHero(Event);
-			return;
-		case InputType::MovementUpLeft:
-			if (GameMap->isCanGoByDiagonal(Player->getHeroPosition(), CPosition{ Player->getHeroPosition().X - 1, Player->getHeroPosition().Y - 1}) == false)
-				return;
-			this->moveHero(Event);
-			return;
-
-		case InputType::MovementUp:
-		case InputType::MovementDown:
-		case InputType::MovementRight:
-		case InputType::MovementLeft:
-			this->moveHero(Event);
-			return;
-
-		case InputType::ExitLevel:
-			this->exitLevel();
-		default:
-			break;
-		}
-
-		CPosition PrevWindowSize = {PrevWindowsSizeX, PrevWindowsSizeY};
-		CPosition PrevWindowPosition = {PrevWindowsPositionX, PrevWindowsPositionY};
-		CPosition NewWindowSize = {NewWindowsSizeX, NewWindowsSizeY};
-		CPosition NewWindowPosition = {NewWindowsPosX, NewWindowsPosY};
-
-		if (isWindowsSizeOrPositionChanges(PrevWindowSize, NewWindowSize, PrevWindowPosition, NewWindowPosition))
-			return;
-	} while (Event == InputType::Null);
-}
-
 void CGame::exitLevel()
 {
 	if (GameMap->isExitFromLevel(this->Player->getHeroPosition()))
@@ -122,7 +57,6 @@ void CGame::exitLevel()
 		this->GenerateLevel();
 	}
 }
-
 
 void CGame::moveHero(InputType Direction)
 {
