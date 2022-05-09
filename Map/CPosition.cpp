@@ -1,4 +1,5 @@
 #include "CPosition.h"
+#include <math.h>
 
 bool operator==(CPosition LeftObject, CPosition RightObject)
 {
@@ -15,4 +16,9 @@ CPosition operator+(CPosition LeftObject, CPosition RightObject)
 CPosition operator-(CPosition LeftObject, CPosition RightObject)
 {
     return CPosition{LeftObject.X - RightObject.X, LeftObject.Y - RightObject.Y};
+}
+
+float CPosition::getVectorLength()
+{
+    return sqrt(X * X + Y * Y);
 }
