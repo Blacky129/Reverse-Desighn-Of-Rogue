@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Map">
+      <UniqueIdentifier>{65d8a2cc-6599-48e4-8a12-acd3a682937a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Map">
+      <UniqueIdentifier>{e5b81901-d14c-4bf6-8e60-f009434e273c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Actor">
+      <UniqueIdentifier>{03bfde6c-b4d4-4513-b9d7-d53e6ecb25d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Actor">
+      <UniqueIdentifier>{17b4211e-42da-40c2-9727-4bd6a9ba8da4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Actor\Controller">
+      <UniqueIdentifier>{ecf2247e-0912-4e7d-9ea2-03bb8c8e2cdd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Actor\Controller">
+      <UniqueIdentifier>{e39180ed-1d3a-4b75-86f4-568a331bfc4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Actor\Controller\Input">
+      <UniqueIdentifier>{5da86df2-3fba-426a-bedd-b7e7d6f62b53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Actor\Controller\Input">
+      <UniqueIdentifier>{d7c1be9f-6c66-4982-8ab5-1d672b954c6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Actor\Action">
+      <UniqueIdentifier>{47703423-9f28-414d-b8b2-231944dcc53b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Actor\Action">
+      <UniqueIdentifier>{0abe6956-1c33-4cba-99ac-c6820cb9b595}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Screen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Hero.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CRandomGenrator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\RogueTest\RogueTest\Map\CCell.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Map\CIndexMap.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Map\CMap.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Map\CMapGenerator.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Map\CPath.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Map\CPosition.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Map\CRoom.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Map\CRoomGenerator.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor\Controller\CPlayerController.cpp">
+      <Filter>Source Files\Actor\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor\Controller\Input\InputManager.cpp">
+      <Filter>Source Files\Actor\Controller\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor\CPlayer.cpp">
+      <Filter>Source Files\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor\Action\CActorAction.cpp">
+      <Filter>Source Files\Actor\Action</Filter>
+    </ClCompile>
+    <ClCompile Include="CActorsStack.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor\CActor.cpp">
+      <Filter>Source Files\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="CGameLogic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor\Action\CMoveOrAtack.cpp">
+      <Filter>Source Files\Actor\Action</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Game.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Screen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Hero.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CRandomGenrator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RogueTest\RogueTest\Map\CCell.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Map\CIndexMap.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Map\CMap.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Map\CMapGenerator.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Map\CPath.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Map\CPosition.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Map\CRoom.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Map\CRoomGenerator.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor\CActor.h">
+      <Filter>Header Files\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor\Controller\CController.h">
+      <Filter>Header Files\Actor\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor\Controller\CPlayerController.h">
+      <Filter>Header Files\Actor\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor\Controller\Input\InputManager.h">
+      <Filter>Header Files\Actor\Controller\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor\CPlayer.h">
+      <Filter>Header Files\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor\Action\CActorAction.h">
+      <Filter>Header Files\Actor\Action</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor\Action\CMoveOrAtack.h">
+      <Filter>Header Files\Actor\Action</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor\Action\CAtack.h">
+      <Filter>Header Files\Actor\Action</Filter>
+    </ClInclude>
+    <ClInclude Include="CActorsStack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CGameLogic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
