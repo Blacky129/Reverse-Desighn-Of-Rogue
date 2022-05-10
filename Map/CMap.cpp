@@ -1,5 +1,5 @@
 #include "CMap.h"
-
+#include "../CRandomGenrator.h"
 #include <iostream>
 
 CPosition CMap::getSizeOfMap()
@@ -120,6 +120,28 @@ void CMap::printDebug()
 	}
 
 	std::cout << '\n';
+}
+
+CPosition CMap::getPositionForSpawn(CPosition RoguePosition)
+{
+	int IndexOfRoomWithRogue = -1;
+	for (int indexOfRoom = 0; indexOfRoom < RoomsOfLevel.size(); indexOfRoom++)
+	{
+		if (RoomsOfLevel.at(indexOfRoom)->isPositionInRoom(RoguePosition))
+		{
+			IndexOfRoomWithRogue = indexOfRoom;
+			break;
+		}
+	}
+
+	int IndexOfRoom;
+	CRandomGenrator  Generator;
+	do
+	{
+		IndexOfRoom = Generator.generateIntergerInRange(0, 8);
+	}while (IndexOfRoom == IndexOfRoomWithRogue);
+
+	return RoomsOfLevel.at(IndexOfRoom)->getRandomPositionInRoom();
 }
 
 TypeOfCell CMap::getCellForRender(CPosition Position)

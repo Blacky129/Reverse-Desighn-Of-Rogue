@@ -160,11 +160,14 @@
     <ClCompile Include="Actor\Action\CActorAction.cpp" />
     <ClCompile Include="Actor\Action\CMoveOrAtack.cpp" />
     <ClCompile Include="Actor\CActor.cpp" />
+    <ClCompile Include="Actor\Controller\CBaseAI.cpp" />
     <ClCompile Include="Actor\Controller\CPlayerController.cpp" />
     <ClCompile Include="Actor\Controller\Input\InputManager.cpp" />
     <ClCompile Include="Actor\CPlayer.cpp" />
+    <ClCompile Include="Actor\Monsters\CBaseMonster.cpp" />
     <ClCompile Include="CActorsStack.cpp" />
     <ClCompile Include="CGameLogic.cpp" />
+    <ClCompile Include="CMonsterSpawner.cpp" />
     <ClCompile Include="CRandomGenrator.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Hero.cpp" />
@@ -185,6 +188,7 @@
     <ClInclude Include="Actor\Action\CAtack.h" />
     <ClInclude Include="Actor\Action\CMoveOrAtack.h" />
     <ClInclude Include="Actor\CActor.h" />
+    <ClInclude Include="Actor\Controller\CBaseAI.h" />
     <ClInclude Include="Actor\Controller\CController.h" />
     <ClInclude Include="Actor\Controller\CPlayerController.h" />
     <ClInclude Include="Actor\Controller\Input\InputManager.h" />
@@ -192,6 +196,7 @@
     <ClInclude Include="Actor\Monsters\CBaseMonster.h" />
     <ClInclude Include="CActorsStack.h" />
     <ClInclude Include="CGameLogic.h" />
+    <ClInclude Include="CMonsterSpawner.h" />
     <ClInclude Include="CRandomGenrator.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Hero.h" />

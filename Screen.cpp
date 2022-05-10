@@ -1,7 +1,6 @@
 #include "Screen.h"
 #include <iostream>
 
-//At Start
 CScreen::CScreen()
 {
 	this->Window = nullptr;
@@ -9,7 +8,7 @@ CScreen::CScreen()
 	this->Textures = new CTextureManager;
 }
 
-//End
+
 CScreen::~CScreen()
 {
 	SDL_DestroyWindow(Window);
@@ -18,7 +17,7 @@ CScreen::~CScreen()
 	SDL_Quit();
 }
 
-//Creating All
+
 bool CScreen::initSDL()
 {
 	if (SDL_Init(SDL_INIT_VIDEO) != 0)
@@ -49,20 +48,19 @@ bool CScreen::initSDL()
 	return true;
 }
 
-//Render
 void CScreen::updateWindow(CMap* Map, CActorStack* ActorsStack)
 {
 	//Scale of textures
-	int* ScreenHieght = new int;
-	int* ScreenWide = new int;
+	int ScreenHieght = 0;
+	int ScreenWide = 0;
 
 	float ScaleX, ScaleY;
 
-	SDL_GetWindowSize(Window, ScreenWide, ScreenHieght);
+	SDL_GetWindowSize(Window, &ScreenWide, &ScreenHieght);
 
-	ScaleX = * ScreenWide / 1184.0f;
+	ScaleX = ScreenWide / 1184.0f;
 
-	ScaleY = *ScreenHieght / 448.0f;
+	ScaleY = ScreenHieght / 448.0f;
 
 	SDL_SetRenderDrawColor(Renderer, 0, 0, 0, 255);
 
@@ -71,6 +69,8 @@ void CScreen::updateWindow(CMap* Map, CActorStack* ActorsStack)
 	drawMap(Map, ScaleX, ScaleY);
 
 	drawHero(ActorsStack->getPlayerPosition(), ScaleX, ScaleY);
+
+	drawMonsters(ActorsStack->getMonstersPosition(), ScaleX, ScaleY);
 
 	SDL_RenderPresent(Renderer);
 }
@@ -97,4 +97,13 @@ void CScreen::drawHero(CPosition HeroPos, float ScaleX, float ScaleY)
 {
 	SDL_Rect Position{ std::round((HeroPos.X + 1) * ScaleX * 16), std::round((HeroPos.Y + 1) * ScaleY * 16), std::round(16 * ScaleX), std::round(16 * ScaleY) };
 	SDL_RenderCopy(this->Renderer, this->Textures->getHeroTex(), NULL, &Position);
+}
+
+void CScreen::drawMonsters(std::vector<MonsterPositionForRender> MonstersPosition, float ScaleX, float ScaleY)
+{
+	for (MonsterPositionForRender Monster : MonstersPosition)
+	{
+		SDL_Rect Position{ std::round((Monster.Position.X + 1) * ScaleX * 16), std::round((Monster.Position.Y + 1) * ScaleY * 16), std::round(16 * ScaleX), std::round(16 * ScaleY) };
+		SDL_RenderCopy(this->Renderer, Textures->getMonsterTex(), NULL, &Position);
+	}
 }

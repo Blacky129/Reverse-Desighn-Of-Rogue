@@ -114,6 +114,7 @@ void CGame::GenerateLevel()
 	CMapGenerator MapGenerator;
 	GameMap = MapGenerator.createNewLevel(DEFAULT_COUNT_OF_ROOM);
 	ActorsStack->setPlayerPosition(GameMap->getStartPosition());
+	ActorsStack->addMonster(GameMap);
 }
 
 bool CGame::startRender()

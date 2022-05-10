@@ -27,6 +27,8 @@ public:
 
 	void drawHero(CPosition HeroPos, float ScaleX, float ScaleY);
 
+	void drawMonsters(std::vector<MonsterPositionForRender> MonstersPosition, float ScaleX, float ScaleY);
+
 private:
 	//Windows
 	SDL_Window* Window;

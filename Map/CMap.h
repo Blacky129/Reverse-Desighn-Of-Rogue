@@ -29,6 +29,8 @@ public:
 
 	void printDebug();
 
+	CPosition getPositionForSpawn(CPosition RoguePosition);
+
 	TypeOfCell getCellForRender(CPosition Position);
 
 	CPosition getStartPosition();

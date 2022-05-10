@@ -14,8 +14,6 @@ private:
 public:
 	CPlayer();
 
-	CActorAction* playPlayer();
-
 	bool initInput();
 private:
 };

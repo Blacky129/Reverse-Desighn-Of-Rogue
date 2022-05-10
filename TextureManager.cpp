@@ -201,6 +201,21 @@ bool CTextureManager::loadTextures(SDL_Renderer* Renderer)
 		return false;
 	}
 
+	//Load BaseMonster
+	Image = SDL_LoadBMP("./assets/textures/BaseMonster_Tex.bmp");
+	if (!Image)
+	{
+		SDL_Log("Unable to load Image Floor: %s", SDL_GetError());
+		return false;
+	}
+
+	BaseMonsterTex = SDL_CreateTextureFromSurface(Renderer, Image);
+	if (BaseMonsterTex == nullptr)
+	{
+		SDL_Log("Unable to crete Floor Textre: %s", SDL_GetError());
+		return false;
+	}
+
 	SDL_FreeSurface(Image);
 
 	return true;
@@ -288,4 +303,9 @@ SDL_Texture* CTextureManager::getDownRightCorner()
 SDL_Texture* CTextureManager::getPath()
 {
 	return this->PathTex;
+}
+
+SDL_Texture* CTextureManager::getMonsterTex()
+{
+	return BaseMonsterTex;
 }

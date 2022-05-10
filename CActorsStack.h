@@ -2,7 +2,10 @@
 
 #include "Actor/CActor.h"
 #include "Actor/CPlayer.h"
+#include "Actor/Monsters/CBaseMonster.h"
 #include <vector>
+
+class CMap;
 
 struct MonsterPositionForRender
 {
@@ -16,16 +19,17 @@ class CActorStack
 {
 private:
 	CPlayer* Player;
-	//Stack Of Monsters
+
+	std::vector<CBaseMonster*> StackOfMonster;
 public:
 	//Player methods
 	bool createPlayer();
 
+	void addMonster(CMap* Map);
+
 	void setPlayerPosition(CPosition NewPosition);
 
 	bool isAnyoneInPosition(CPosition Position);
-
-	//CPlayer* getPlayer(); TODO maybe delete
 
 	CActorAction* getPlayerAction();
 

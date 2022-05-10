@@ -31,7 +31,6 @@ private:
 public:
 	CMap* createNewLevel(int RoomsCount);
 
-
 private:
 
 	CPosition getRandomPositionInRoom(CRoom* Room);

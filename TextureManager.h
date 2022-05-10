@@ -43,6 +43,8 @@ public:
 
 	SDL_Texture* getPath();
 
+	SDL_Texture* getMonsterTex();
+
 	//Getters End
 private:
 
@@ -68,5 +70,7 @@ private:
 	SDL_Texture* FloorTex;
 
 	SDL_Texture* EndOfLevelTex;
+
+	SDL_Texture* BaseMonsterTex;
 		
 };

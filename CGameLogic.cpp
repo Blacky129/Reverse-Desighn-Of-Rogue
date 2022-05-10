@@ -14,6 +14,8 @@ void CGameLogic::playPlayer(CActorStack* ActorsStack, CMap* Map, bool* PlayerExi
 
 		if (CanEnd)
 			provideAction(Action, Map, PlayerExitFromLevel, ActorsStack);
+
+		delete Action;//TO DO History of Actions
 	}while (CanEnd == false);
 		
 }

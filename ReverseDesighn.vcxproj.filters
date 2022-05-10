@@ -114,6 +114,15 @@
     <ClCompile Include="Actor\Action\CMoveOrAtack.cpp">
       <Filter>Source Files\Actor\Action</Filter>
     </ClCompile>
+    <ClCompile Include="Actor\Controller\CBaseAI.cpp">
+      <Filter>Source Files\Actor\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor\Monsters\CBaseMonster.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CMonsterSpawner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -190,6 +199,12 @@
     </ClInclude>
     <ClInclude Include="Actor\Monsters\CBaseMonster.h">
       <Filter>Header Files\Actor\Monsters</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor\Controller\CBaseAI.h">
+      <Filter>Header Files\Actor\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="CMonsterSpawner.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

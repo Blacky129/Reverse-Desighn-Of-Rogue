@@ -8,12 +8,6 @@ bool CPlayerController::initInput()
     return Input->initInput();
 }
 
-CPlayerController::CPlayerController(CPlayer* Player)
-{
-	Owner = Player;
-	Input = nullptr;
-}
-
 CPosition getVector(InputType Input)
 {
 	CPosition Vector = { 0, 0 };

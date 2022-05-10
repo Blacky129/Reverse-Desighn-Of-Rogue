@@ -1,4 +1,5 @@
 #include "CRoom.h"
+#include "../CRandomGenrator.h"
 
 TypeOfRoom CRoom::getTypeOfRoom()
 {
@@ -41,6 +42,25 @@ CPath* CRoom::getPath(PathDirection Direction)
 bool CRoom::hasLight()
 {
 	return HasLight;
+}
+
+bool CRoom::isPositionInRoom(CPosition Position)
+{
+	if (
+		Position.X >= TopLeftCornerPosition.X &&
+		Position.X <= TopLeftCornerPosition.X + SizeOfRoom.X - 1 &&
+		Position.Y >= TopLeftCornerPosition.Y &&
+		Position.Y <= TopLeftCornerPosition.Y + SizeOfRoom.Y - 1
+		)
+		return true;
+	return false;
+}
+
+CPosition CRoom::getRandomPositionInRoom()
+{
+	CRandomGenrator Generator;
+	return CPosition{Generator.generateIntergerInRange(TopLeftCornerPosition.X + 1, TopLeftCornerPosition.X + SizeOfRoom.X - 2),
+					 Generator.generateIntergerInRange(TopLeftCornerPosition.Y + 1, TopLeftCornerPosition.Y + SizeOfRoom.Y - 2)};
 }
 
 PathDirection getOppositeDirection(PathDirection Direction)

@@ -14,9 +14,8 @@ class CPlayerController : public CController
 private:
 	CInputManager* Input;
 
-	CPlayer* Owner;
 public:
-	CPlayerController(CPlayer* Owner);
+	using CController::CController;
 
 	CActorAction* actionActor();
 

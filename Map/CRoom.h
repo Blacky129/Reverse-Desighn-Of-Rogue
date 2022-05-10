@@ -38,6 +38,10 @@ public:
 	CPath* getPath(PathDirection Direction);
 
 	bool hasLight();
+
+	bool isPositionInRoom(CPosition Position);
+
+	CPosition getRandomPositionInRoom();
 private:
 	std::vector<CPath*> Pathes;
 

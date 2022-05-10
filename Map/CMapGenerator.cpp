@@ -596,6 +596,7 @@ void CMapGenerator::generateExitFromLevel()
 	} while (Map->RoomsOfLevel.at(IndexOfExitRoom)->getTypeOfRoom() != TypeOfRoom::RealRoom || IndexOfExitRoom == IndexOfStartRoom);
 
 	Map->ExitFromLevel = getRandomPositionInRoom(Map->RoomsOfLevel.at(IndexOfExitRoom));
+	Map->IndexMap->Map[Map->ExitFromLevel.Y][Map->ExitFromLevel.X].Type = TypeOfCell::Exit;
 }
 
 CPosition CMapGenerator::getPositionOfRoomByIndex(int index)
