@@ -12,7 +12,7 @@ CBaseMonster* CMonsterSpawner::spawnMonster(CMap* Map, CActorStack* ActorStack)
 
     Monster->setActorPosition(MonsterPosition);
 
-    Monster->setActorPosition(ActorStack->getPlayerPosition() + CPosition{ 1,0 }); //TODO Delete
+    //Monster->setActorPosition(ActorStack->getPlayerPosition() + CPosition{ 1,0 }); //TODO Delete
 
     return Monster;
 }

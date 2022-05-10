@@ -94,7 +94,7 @@ bool CMap::isRoomCorrectForSpawn(int IndexOfRoom, int IndexOfRoomWithRogue)
 	if (IndexOfRoom == IndexOfRoomWithRogue)
 		return false;
 
-	if (RoomsOfLevel.at(IndexOfRoom)->canPathTroughRoom() == false)
+	if (RoomsOfLevel.at(IndexOfRoom)->getTypeOfRoom() != TypeOfRoom::RealRoom)
 		return false;
 
 	return true;
