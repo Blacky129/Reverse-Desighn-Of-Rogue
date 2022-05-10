@@ -18,13 +18,18 @@ void CActorStack::setPlayerPosition(CPosition NewPosition)
     Player->setActorPosition(NewPosition);
 }
 
-bool CActorStack::isAnyoneInPosition(CPosition Position)
+CActor* CActorStack::getActorInThisPosition(CPosition Position)
 {
     if (Player->getActorPosition() == Position)
-        return true;
-    
-    //TODO iterac stack
-    return false;
+        return Player;
+
+    for (CBaseMonster* Monster : StackOfMonster)
+    {
+        if (Monster->getActorPosition() == Position)
+            return Monster;
+    }
+
+    return nullptr;
 }
 
 CActorAction* CActorStack::getPlayerAction()

@@ -2,7 +2,8 @@
 
 #include "CActorsStack.h"
 #include "Map/CMap.h"
-#include"Actor/Action/CMoveOrAtack.h"
+#include "Actor/Action/CMoveOrAtack.h"
+#include "Actor/Action/CAtack.h"
 
 class CGameLogic
 {
@@ -18,7 +19,7 @@ private:
 
 	void provideAction(CActorAction* Action, CMap* Map, bool* PlayerExit, CActorStack* ActorStack);
 
-	void provideAtack(CMovementOrAtack* Action, CActorStack* ActorStack);
+	void provideAtack(CMovementOrAtack* Action, CActorStack* ActorStack, CPosition ZoneOfAtack);
 
 	void provideMovement(CMovementOrAtack* Action);
 };

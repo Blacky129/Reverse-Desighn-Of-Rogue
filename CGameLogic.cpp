@@ -1,4 +1,5 @@
 #include "CGameLogic.h"
+#include <iostream>
 
 void CGameLogic::playPlayer(CActorStack* ActorsStack, CMap* Map, bool* PlayerExitFromLevel)
 {
@@ -28,8 +29,8 @@ void CGameLogic::provideAction(CActorAction* Action, CMap* Map, bool* PlayerExit
 		*PlayerExit = true;
 		return;
 	case TypeOfAction::Movement:
-		if (ActorStack->isAnyoneInPosition(dynamic_cast<CMovementOrAtack*>(Action)->getDestination()))
-			provideAtack(dynamic_cast<CMovementOrAtack*>(Action), ActorStack);
+		if (ActorStack->getActorInThisPosition(dynamic_cast<CMovementOrAtack*>(Action)->getDestination()))
+			provideAtack(dynamic_cast<CMovementOrAtack*>(Action), ActorStack, dynamic_cast<CMovementOrAtack*>(Action)->getDestination());
 		else
 			provideMovement(dynamic_cast<CMovementOrAtack*>(Action));
 		return;
@@ -38,9 +39,11 @@ void CGameLogic::provideAction(CActorAction* Action, CMap* Map, bool* PlayerExit
 	}
 }
 
-void CGameLogic::provideAtack(CMovementOrAtack* Action, CActorStack* ActorStack)
+void CGameLogic::provideAtack(CMovementOrAtack* Action, CActorStack* ActorStack, CPosition ZoneOfAtack)
 {
-	//TODO function
+	Action = new CAtack(Action, ActorStack->getActorInThisPosition(dynamic_cast<CMovementOrAtack*>(Action)->getDestination()), 0);
+
+	std::cout << "Atacked";
 }
 
 void CGameLogic::provideMovement(CMovementOrAtack* Action)

@@ -11,7 +11,10 @@ protected:
 	CPosition From;
 	CPosition To;
 public:
+	CMovementOrAtack() {};
 	CMovementOrAtack(CActorAction* Action, CPosition NewFrom, CPosition NewTo);
+
+	virtual ~CMovementOrAtack() {};
 
 	CPosition getStartOfMovement();
 

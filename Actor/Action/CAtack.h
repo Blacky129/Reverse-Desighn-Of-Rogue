@@ -5,8 +5,8 @@
 class CAtack : public CMovementOrAtack
 {
 protected:
-	CActor* ToWhom;
-	int Damage;
+	CActor* _ToWhom;
+	int _Damage;
 public:
 	CAtack(CMovementOrAtack* Action, CActor* ToWhom, int Damage);
 private:

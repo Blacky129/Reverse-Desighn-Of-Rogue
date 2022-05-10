@@ -8,11 +8,9 @@ CBaseMonster* CMonsterSpawner::spawnMonster(CMap* Map, CActorStack* ActorStack)
     do
     {
         MonsterPosition = Map->getPositionForSpawn(ActorStack->getPlayerPosition());
-    } while (ActorStack->isAnyoneInPosition(MonsterPosition) == true);
+    } while (ActorStack->getActorInThisPosition(MonsterPosition) != nullptr);
 
     Monster->setActorPosition(MonsterPosition);
-
-    //Monster->setActorPosition(ActorStack->getPlayerPosition() + CPosition{ 1,0 }); //TODO Delete
 
     return Monster;
 }

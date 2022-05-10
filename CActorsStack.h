@@ -22,14 +22,13 @@ private:
 
 	std::vector<CBaseMonster*> StackOfMonster;
 public:
-	//Player methods
 	bool createPlayer();
 
 	void addMonster(CMap* Map);
 
 	void setPlayerPosition(CPosition NewPosition);
 
-	bool isAnyoneInPosition(CPosition Position);
+	CActor* getActorInThisPosition(CPosition Position);
 
 	CActorAction* getPlayerAction();
 

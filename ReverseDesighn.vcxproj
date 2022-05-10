@@ -158,6 +158,7 @@
   <ItemGroup>
     <ClCompile Include="..\RogueTest\RogueTest\Map\CCell.cpp" />
     <ClCompile Include="Actor\Action\CActorAction.cpp" />
+    <ClCompile Include="Actor\Action\CAtack.cpp" />
     <ClCompile Include="Actor\Action\CMoveOrAtack.cpp" />
     <ClCompile Include="Actor\CActor.cpp" />
     <ClCompile Include="Actor\Controller\CBaseAI.cpp" />
