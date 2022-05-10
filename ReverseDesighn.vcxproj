@@ -189,6 +189,7 @@
     <ClInclude Include="Actor\Controller\CPlayerController.h" />
     <ClInclude Include="Actor\Controller\Input\InputManager.h" />
     <ClInclude Include="Actor\CPlayer.h" />
+    <ClInclude Include="Actor\Monsters\CBaseMonster.h" />
     <ClInclude Include="CActorsStack.h" />
     <ClInclude Include="CGameLogic.h" />
     <ClInclude Include="CRandomGenrator.h" />

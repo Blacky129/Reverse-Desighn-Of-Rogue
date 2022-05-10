@@ -6,13 +6,8 @@ CPlayer::CPlayer()
     Type = TypeOfActor::Rogue;
 }
 
-CActorAction* CPlayer::playPlayer()
-{
-    return Controller->actionActor();
-}
-
 bool CPlayer::initInput()
 {
     Controller = new CPlayerController(this);
-    return Controller->initInput();
+    return dynamic_cast<CPlayerController*>(Controller)->initInput();
 }

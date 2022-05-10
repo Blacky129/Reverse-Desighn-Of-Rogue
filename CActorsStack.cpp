@@ -22,7 +22,7 @@ bool CActorStack::isAnyoneInPosition(CPosition Position)
 
 CActorAction* CActorStack::getPlayerAction()
 {
-    return Player->playPlayer();
+    return Player->playActor();
 }
 
 CPosition CActorStack::getPlayerPosition()

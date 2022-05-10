@@ -11,7 +11,6 @@ class CController;
 class CPlayer : public CActor
 {
 private:
-	CPlayerController* Controller;
 public:
 	CPlayer();
 

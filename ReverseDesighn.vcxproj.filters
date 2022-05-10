@@ -43,6 +43,9 @@
     <Filter Include="Source Files\Actor\Action">
       <UniqueIdentifier>{0abe6956-1c33-4cba-99ac-c6820cb9b595}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Actor\Monsters">
+      <UniqueIdentifier>{fbbb1543-14e2-4fc3-a786-a9492f7a83ec}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -184,6 +187,9 @@
     </ClInclude>
     <ClInclude Include="CGameLogic.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor\Monsters\CBaseMonster.h">
+      <Filter>Header Files\Actor\Monsters</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

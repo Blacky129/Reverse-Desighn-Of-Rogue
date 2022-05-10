@@ -15,6 +15,8 @@ class CActor
 protected:
 	CPosition Position;
 
+	CController* Controller;
+
 	int Health;
 	
 	int Level;
@@ -26,6 +28,8 @@ public:
 	CActor();
 
 	void setActorPosition(CPosition NewPosition);
+
+	CActorAction* playActor();
 
 	CPosition getActorPosition();
 private:

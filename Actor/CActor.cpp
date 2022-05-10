@@ -14,6 +14,11 @@ void CActor::setActorPosition(CPosition NewPosition)
 		Position = NewPosition;
 }
 
+CActorAction* CActor::playActor()
+{
+	return Controller->actionActor();
+}
+
 CPosition CActor::getActorPosition()
 {
 	return Position;
