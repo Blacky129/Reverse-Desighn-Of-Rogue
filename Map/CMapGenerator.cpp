@@ -90,13 +90,13 @@ bool CMapGenerator::canRoomBeNotReal(int IndexOfRoom)
 	{
 	case 3:
 	case 5:
-		if (Map->isRoomReal(1) || Map->isRoomReal(7))
+		if (Map->isRoomReal(1) && Map->isRoomReal(7))
 			return true;
 		else
 			return false;
 	case 1:
 	case 7:
-		if (Map->isRoomReal(3) || Map->isRoomReal(5))
+		if (Map->isRoomReal(3) && Map->isRoomReal(5))
 			return true;
 		else
 			return false;

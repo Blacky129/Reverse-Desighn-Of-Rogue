@@ -89,6 +89,17 @@ bool CMap::isInRoomWithoutLight(CPosition Position)
 	}
 }
 
+bool CMap::isRoomCorrectForSpawn(int IndexOfRoom, int IndexOfRoomWithRogue)
+{
+	if (IndexOfRoom == IndexOfRoomWithRogue)
+		return false;
+
+	if (RoomsOfLevel.at(IndexOfRoom)->canPathTroughRoom() == false)
+		return false;
+
+	return true;
+}
+
 bool CMap::isRoomReal(int IndexOfRoom)
 {
 	if (IndexOfRoom < 0 || IndexOfRoom > RoomsOfLevel.size())
@@ -139,7 +150,7 @@ CPosition CMap::getPositionForSpawn(CPosition RoguePosition)
 	do
 	{
 		IndexOfRoom = Generator.generateIntergerInRange(0, 8);
-	}while (IndexOfRoom == IndexOfRoomWithRogue);
+	}while (isRoomCorrectForSpawn(IndexOfRoom, IndexOfRoomWithRogue) == false);
 
 	return RoomsOfLevel.at(IndexOfRoom)->getRandomPositionInRoom();
 }

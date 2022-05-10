@@ -57,5 +57,7 @@ private:
 	int getIndexOfRoomByPosition(CPosition Position);
 
 	bool isInRoomWithoutLight(CPosition Position);
+
+	bool isRoomCorrectForSpawn(int IndexOfRoom, int IndexOfRoomWithRogue);
 };
 
