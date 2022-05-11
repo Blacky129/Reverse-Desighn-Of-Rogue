@@ -169,6 +169,7 @@
     <ClCompile Include="CActorsStack.cpp" />
     <ClCompile Include="CGameLogic.cpp" />
     <ClCompile Include="CMonsterSpawner.cpp" />
+    <ClCompile Include="CPathFinder.cpp" />
     <ClCompile Include="CRandomGenrator.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Hero.cpp" />
@@ -198,6 +199,7 @@
     <ClInclude Include="CActorsStack.h" />
     <ClInclude Include="CGameLogic.h" />
     <ClInclude Include="CMonsterSpawner.h" />
+    <ClInclude Include="CPathFinder.h" />
     <ClInclude Include="CRandomGenrator.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Hero.h" />

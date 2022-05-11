@@ -14,7 +14,7 @@ int main()
 
 	bool CanStartGame ;
 
-	if (Gamemode->startRender() && Gamemode->startInput())
+	if (Gamemode->startRender())
 		CanStartGame = true;
 	else
 		CanStartGame = false;

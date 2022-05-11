@@ -5,8 +5,7 @@
 #include "Screen.h"
 #include "Hero.h"
 #include "CGameLogic.h"
-
-#include "./Actor/Controller/Input/InputManager.h" //TODO Remove
+#include "CPathFinder.h"
 
 class CGame
 {
@@ -24,8 +23,6 @@ private:
 
 	CHero* Player;
 
-	CInputManager* KeyboardInput;
-
 	CActorStack* ActorsStack;
 
 public:
@@ -39,16 +36,10 @@ public:
 
 	void provideGameLogic();
 
-	void moveHero(InputType Direction);
-
-	//Create dungeon
 	void GenerateLevel();
 
 	//Try to create Window
 	bool startRender();
-
-	//Try to init SDL input
-	bool startInput();
 
 	//Input -> GameLogic -> Render
 	void startGameLoop();

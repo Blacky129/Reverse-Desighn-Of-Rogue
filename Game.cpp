@@ -10,7 +10,6 @@ CGame::CGame()
 	Screen = new CScreen;
 	GameMap = nullptr;
 	Player = new CHero;
-	KeyboardInput = new CInputManager;
 	isRunning = true;
 }
 
@@ -26,8 +25,6 @@ void CGame::startGame()
 
 	GenerateLevel();
 
-	//TODO Monster Creation
-
 	startGameLoop();
 }
 
@@ -37,7 +34,6 @@ CGame::~CGame()
 	delete Screen;
 	delete GameMap;
 	delete Player;
-	delete KeyboardInput;
 }
 
 bool isWindowsSizeOrPositionChanges(CPosition PrevWindowSize, CPosition NewWindowSize,
@@ -58,57 +54,6 @@ void CGame::exitLevel()
 	}
 }
 
-void CGame::moveHero(InputType Direction)
-{
-	CPosition HeroPosition = this->Player->getHeroPosition();
-	CPosition NewPosition = CPosition{-1,-1};
-	switch (Direction)
-	{
-	case InputType::MovementUp:
-		NewPosition = CPosition{ HeroPosition.X, HeroPosition.Y - 1 };
-		break;
-	case InputType::MovementDown:
-		NewPosition = CPosition{ HeroPosition.X, HeroPosition.Y + 1 };
-		break;
-	case InputType::MovementRight:
-		NewPosition = CPosition{ HeroPosition.X + 1, HeroPosition.Y };
-		break;
-	case InputType::MovementLeft:
-		NewPosition = CPosition{ HeroPosition.X - 1, HeroPosition.Y };
-		break;
-	case InputType::MovementUpRight:
-		NewPosition = CPosition{ HeroPosition.X + 1, HeroPosition.Y - 1};
-		break;
-	case InputType::MovementUpLeft:
-		NewPosition = CPosition{ HeroPosition.X - 1, HeroPosition.Y - 1};
-		break;
-	case InputType::MovementDownRight:
-		NewPosition = CPosition{ HeroPosition.X + 1, HeroPosition.Y + 1};
-		break;
-	case InputType::MovementDownLeft:
-		NewPosition = CPosition{ HeroPosition.X - 1, HeroPosition.Y + 1};
-		break;
-	default:
-		return;
-	}
-	
-	switch (GameMap->getTypeOfIteration(NewPosition))
-	{
-	case TypeIteration::Move:
-		Player->setHeroPosition(NewPosition);
-		//GameMap->updateMapOfVisability(NewPosition);
-		return;
-	case TypeIteration::Atack:
-		//TO DO
-
-	case TypeIteration::None:
-	default:
-		return;
-	}
-
-
-}
-
 void CGame::GenerateLevel()
 {
 	CMapGenerator MapGenerator;
@@ -120,13 +65,6 @@ void CGame::GenerateLevel()
 bool CGame::startRender()
 {
 	if (Screen->initSDL())
-		return true;
-	return false;
-}
-
-bool CGame::startInput()
-{
-	if (KeyboardInput->initInput())
 		return true;
 	return false;
 }
@@ -158,8 +96,5 @@ void CGame::startGameLoop()
 		renderGraphic();
 
 		provideGameLogic();
-		//getInput();
-
-		//TODO Monster Turn
 	}
 }

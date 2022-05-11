@@ -126,6 +126,9 @@
     <ClCompile Include="Actor\Action\CAtack.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CPathFinder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -207,6 +210,9 @@
       <Filter>Header Files\Actor\Controller</Filter>
     </ClInclude>
     <ClInclude Include="CMonsterSpawner.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CPathFinder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
