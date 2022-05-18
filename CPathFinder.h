@@ -10,7 +10,7 @@ struct Node
 	int _ValueToNode;
 	float _ValueToSourse;
 
-	Node(CPosition From, CPosition To, int ValueToNode);
+	Node(CPosition From, CPosition To, int ValueToNode, CPosition Goal);
 };
 
 struct Stack
@@ -20,6 +20,8 @@ struct Stack
 	void initNewVector();
 
 	void addNode(Node* Node);
+
+	void deleteNode(Node* Node);
 
 	void clearStack();
 };
@@ -35,6 +37,7 @@ private:
 
 	std::vector<Node*> _Closed;
 public:
+	CPathFinder();
 	CPathFinder(CMap* Map);
 
 	void changeMap(CMap* NewMap);
@@ -44,15 +47,15 @@ public:
 private:
 	Node* findNewNodeToExtend();
 
-	void extendNode(Node* Node);
+	void extendNode(Node* Node, CPosition Goal);
 
-	bool isCellPathable(CPosition Position);
+	bool isCellPathable(CPosition Source, CPosition To);
 
 	bool isPositionInClosed(CPosition Position);
 
 	void clearOpenAndClosed();
 
-	void improoveOpen();
+	void improoveOpen(Node* NewNode);
 
 	CPosition createVectorToGoal(CPosition Goal);
 };

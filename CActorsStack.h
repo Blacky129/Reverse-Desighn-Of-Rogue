@@ -3,6 +3,7 @@
 #include "Actor/CActor.h"
 #include "Actor/CPlayer.h"
 #include "Actor/Monsters/CBaseMonster.h"
+#include "CPathFinder.h"
 #include <vector>
 
 class CMap;
@@ -18,10 +19,16 @@ class CPlayer;
 class CActorStack
 {
 private:
-	CPlayer* Player;
+	CPlayer* _Player;
 
-	std::vector<CBaseMonster*> StackOfMonster;
+	CPathFinder* _PathFinder;
+
+	std::vector<CBaseMonster*> _StackOfMonster;
+
+	int _MonsterTurn;
 public:
+	void setPathFinder(CPathFinder* PathFinder);
+
 	bool createPlayer();
 
 	void addMonster(CMap* Map);
@@ -31,6 +38,8 @@ public:
 	CActor* getActorInThisPosition(CPosition Position);
 
 	CActorAction* getPlayerAction();
+
+	CActorAction* getMonsterAction(bool* LastMonster);
 
 	CPosition getPlayerPosition();
 

@@ -26,6 +26,10 @@ protected:
 	TypeOfActor Type;
 public:
 	CActor();
+	virtual ~CActor()
+	{
+		delete Controller;
+	}
 
 	void setActorPosition(CPosition NewPosition);
 

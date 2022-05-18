@@ -21,10 +21,11 @@ private:
 
 	CGameLogic* GameLogic;
 
-	CHero* Player;
-
 	CActorStack* ActorsStack;
 
+	CPathFinder* _PathFinder;
+
+	bool isRunning;
 public:
 	void startGame();
 
@@ -47,7 +48,4 @@ public:
 	void renderGraphic();
 
 private:
-	bool isRunning;
-
-	void exitLevel();
 };

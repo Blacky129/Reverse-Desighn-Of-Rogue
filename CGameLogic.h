@@ -10,6 +10,8 @@ class CGameLogic
 private:
 public:
 	void playPlayer(CActorStack* ActorsStack, CMap* Map, bool* PlayerExitFromLevel);
+
+	void playMonstersTurn(CActorStack* ActorsStack, CMap* Map);
 private:
 	bool canProvideAction(CActorAction* Action, CMap* Map);
 

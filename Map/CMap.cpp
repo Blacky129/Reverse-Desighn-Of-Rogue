@@ -199,7 +199,7 @@ TypeIteration CMap::getTypeOfIteration(CPosition Position)
 	case TypeOfCell::Path:
 	case TypeOfCell::Floor:
 	case TypeOfCell::Exit:
-		return TypeIteration::Move;//check Maybe Atack
+		return TypeIteration::Move;
 	}
 }
 

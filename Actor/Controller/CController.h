@@ -2,8 +2,6 @@
 
 #include "../Action/CActorAction.h"
 
-class CActorAction;
-
 class CController
 {
 protected:

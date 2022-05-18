@@ -5,6 +5,8 @@ CActor::CActor()
 	Health = 0;
 	Level = 1;
 	Stuned = false;
+	Position = { -1, -1 };
+	Controller = nullptr;
 	Type = TypeOfActor::Undefined;
 }
 

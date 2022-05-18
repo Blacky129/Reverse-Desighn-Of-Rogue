@@ -5,7 +5,6 @@
 class CBaseAI : public CController
 {
 private:
-
 public:
 	using CController::CController;
 

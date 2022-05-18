@@ -21,12 +21,30 @@ void CGameLogic::playPlayer(CActorStack* ActorsStack, CMap* Map, bool* PlayerExi
 		
 }
 
+void CGameLogic::playMonstersTurn(CActorStack* ActorsStack, CMap* Map)
+{
+	bool LastMonster = false;
+	while (LastMonster == false)
+	{
+		CActorAction* Action = ActorsStack->getMonsterAction(&LastMonster);
+
+		if (Action->getType() == TypeOfAction::None)
+			continue;
+
+		if (canProvideAction(Action, Map))
+			provideAction(Action, Map, nullptr, ActorsStack);
+
+		delete Action;//TO DO History of Actions
+	}
+}
+
 void CGameLogic::provideAction(CActorAction* Action, CMap* Map, bool* PlayerExit, CActorStack* ActorStack)
 {
 	switch (Action->getType())
 	{
 	case TypeOfAction::ExitFromLevel:
-		*PlayerExit = true;
+		if (PlayerExit != nullptr)
+			*PlayerExit = true;
 		return;
 	case TypeOfAction::Movement:
 		if (ActorStack->getActorInThisPosition(dynamic_cast<CMovementOrAtack*>(Action)->getDestination()))

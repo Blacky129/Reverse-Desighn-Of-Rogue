@@ -1,20 +1,38 @@
 #include "CPathFinder.h"
 #include <algorithm>
 
-Node::Node(CPosition From, CPosition To, int ValueToNode)
+Node::Node(CPosition From, CPosition To, int ValueToNode, CPosition Goal)
 {
 	_From = From;
 	_To = To;
 	_ValueToNode = ValueToNode;
-	_ValueToSourse = sqrt((To.X - From.X) ^ 2 + (To.Y - From.Y) ^ 2);
+	_ValueToSourse = sqrt(pow(Goal.X - To.X, 2) + pow(Goal.Y - To.Y, 2));
 }
 
 void Stack::addNode(Node* Node)
 {
-	if (Node->_ValueToNode >= _Stack.size())
+	while (Node->_ValueToNode >= (_Stack.size()))
+	{
 		initNewVector();
+	}
 
 	_Stack.at(Node->_ValueToNode)->push_back(Node);
+}
+
+void Stack::deleteNode(Node* Node)
+{
+	for (int Index = 0; Index < _Stack.size(); Index++)
+	{
+		for (int Index2 = 0; Index2 < _Stack.at(Index)->size(); Index2++)
+		{
+			if (_Stack.at(Index)->at(Index2) == Node)
+			{
+				_Stack.at(Index)->erase(_Stack.at(Index)->begin() + Index2);
+				delete Node;
+				return;
+			}
+		}
+	}
 }
 
 void Stack::initNewVector()
@@ -24,17 +42,12 @@ void Stack::initNewVector()
 
 void Stack::clearStack()
 {
-	for (std::vector<Node*>* NodeVector : _Stack)
-	{
-		for (Node* CurrentNode : *NodeVector)
-		{
-			delete CurrentNode;
-		}
-
-		delete NodeVector;
-	}
-
 	_Stack.clear();
+}
+
+CPathFinder::CPathFinder()
+{
+	_Map = nullptr;
 }
 
 CPathFinder::CPathFinder(CMap* Map)
@@ -51,11 +64,15 @@ void CPathFinder::changeMap(CMap* NewMap)
 
 void CPathFinder::clearOpenAndClosed()
 {
-	for (Node* Node : _Open)
-		delete Node;
+	for (Node* CurrentNode : _Open)
+		delete CurrentNode;
 
-	for (Node* Node : _Closed)
-		delete Node;
+	_Open = {};
+
+	for (Node* CurrentNode : _Closed)
+		delete CurrentNode;
+	
+	_Closed = {};
 }
 
 CPosition CPathFinder::getVectorToGoal(CPosition From, CPosition Goal)
@@ -64,19 +81,25 @@ CPosition CPathFinder::getVectorToGoal(CPosition From, CPosition Goal)
 
 	_PathStack.clearStack();
 
-	_Open.push_back(new Node{ CPosition{-1, -1}, From, 0 });
+	_Open.push_back(new Node{ CPosition{-1, -1}, From, 0 , Goal});
 
 	while (_Open.size() != 0)
 	{
 		Node* NewNode = findNewNodeToExtend();
 
 		if (NewNode->_To == Goal)
+		{
+			std::vector<Node*>::iterator Position = std::find(_Open.begin(), _Open.end(), NewNode);
+			_Open.erase(Position);
+			_Closed.push_back(NewNode);
 			break;
+		}
 
-		extendNode(NewNode);
-
-		improoveOpen();
+		extendNode(NewNode, Goal);
 	}
+
+	for (Node* __Node : _Closed)
+		_PathStack.addNode(__Node);
 
 	return createVectorToGoal(Goal);
 }
@@ -127,7 +150,7 @@ Node* CPathFinder::findNewNodeToExtend()
 	return NodeToExtend;
 }
 
-void CPathFinder::extendNode(Node* CurrentNode)
+void CPathFinder::extendNode(Node* CurrentNode, CPosition Goal)
 {
 	std::vector<CPosition> ExtendedPostions = {
 		CurrentNode->_To + CPosition{ -1, -1 }, CurrentNode->_To + CPosition{ +0, -1 }, CurrentNode->_To + CPosition{ +1, -1 },
@@ -137,23 +160,32 @@ void CPathFinder::extendNode(Node* CurrentNode)
 
 	for (CPosition NextPosition : ExtendedPostions)
 	{
-		if (isCellPathable(NextPosition) == false)
+		if (isCellPathable(NextPosition, CurrentNode->_To) == false)
 			continue;
 
 		if (isPositionInClosed(NextPosition) == true)
 			continue;
 		
-		_PathStack.addNode(new Node{ CurrentNode->_To, NextPosition, CurrentNode->_ValueToNode + 1 });
+		Node* NewNode = new Node{ CurrentNode->_To, NextPosition, CurrentNode->_ValueToNode + 1, Goal };
+		
+		improoveOpen(NewNode);
 	}
+
+	std::vector<Node*>::iterator Position = std::find(_Open.begin(), _Open.end(), CurrentNode);
+	_Closed.push_back(CurrentNode);
+	_Open.erase(Position);
 }
 
-bool CPathFinder::isCellPathable(CPosition Position)
+bool CPathFinder::isCellPathable(CPosition Source, CPosition To)
 {
-	if (Position.X < 0 || Position.Y < 0 || Position.X > _Map->getSizeOfMap().X || Position.Y > _Map->getSizeOfMap().Y)
+	if (Source.X < 0 || Source.Y < 0 || Source.X > _Map->getSizeOfMap().X || Source.Y > _Map->getSizeOfMap().Y)
 		return false;
 
-	if (_Map->getTypeOfIteration(Position) != TypeIteration::Move)
+	if (_Map->getTypeOfIteration(Source) != TypeIteration::Move)
 		return false;
+
+	if (CPosition{ Source - To }.getVectorLength() > 1)
+		return _Map->isCanGoByDiagonal(Source, To);
 
 	return true;
 }
@@ -168,33 +200,26 @@ bool CPathFinder::isPositionInClosed(CPosition Position)
 	return false;
 }
 
-void CPathFinder::improoveOpen()
+void CPathFinder::improoveOpen(Node* NewNode)
 {
-	std::vector<Node*> ImproovedOpen = {};
+
+
 	for (Node* CurrentNode : _Open)
 	{
-		for (Node* NodeForCheck : ImproovedOpen)
+		if (!(CurrentNode->_To == NewNode->_To))
+			continue;
+			
+		if (CurrentNode->_ValueToNode < NewNode->_ValueToNode)
 		{
-			if (!(CurrentNode->_To == NodeForCheck->_To))
-				continue;
-
-			if (CurrentNode->_ValueToNode > NodeForCheck->_ValueToNode)
-			{
-				std::vector<Node*>::iterator Position = std::find(_Open.begin(), _Open.end(), CurrentNode);
-				_Open.erase(Position);
-				continue;
-			}
-			else
-			{
-				std::vector<Node*>::iterator Position = std::find(_Open.begin(), _Open.end(), NodeForCheck);
-				_Open.erase(Position);
-				Position = std::find(ImproovedOpen.begin(), ImproovedOpen.end(), NodeForCheck);
-				ImproovedOpen.erase(Position);
-			}
-
-
-			ImproovedOpen.push_back(CurrentNode);
+			delete NewNode;
+			return;
 		}
 
+		std::vector<Node*>::iterator Position = std::find(_Open.begin(), _Open.end(), CurrentNode);
+		_Open.erase(Position);
+		delete CurrentNode;
 	}
+
+
+	_Open.push_back(NewNode);
 }

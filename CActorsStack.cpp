@@ -1,29 +1,49 @@
 #include "CActorsStack.h"
 #include "CMonsterSpawner.h"
 
+void CActorStack::setPathFinder(CPathFinder* PathFinder)
+{
+    if (_PathFinder == nullptr)
+        _PathFinder = PathFinder;
+}
+
 bool CActorStack::createPlayer()
 { 
-    Player = new CPlayer;
-    return Player->initInput();
+    _Player = new CPlayer;
+    return _Player->initInput();
 }
 
 void CActorStack::addMonster(CMap* Map)
 {
     CMonsterSpawner Spawner;
-    StackOfMonster.push_back(Spawner.spawnMonster(Map, this));
+    CBaseMonster* NewMonster = Spawner.spawnMonster(Map, this);
+    _StackOfMonster.push_back(NewMonster);
+    NewMonster->setPathFinder(_PathFinder);
+    NewMonster->setGoal(_Player);
+    _MonsterTurn = 0;
+}
+
+CActorAction* CActorStack::getMonsterAction(bool* LastMonster)
+{
+    CActorAction* Action = _StackOfMonster[_MonsterTurn]->playActor();
+    
+    if (_MonsterTurn == _StackOfMonster.size() - 1)
+        *LastMonster = true;
+
+    return Action;
 }
 
 void CActorStack::setPlayerPosition(CPosition NewPosition)
 {
-    Player->setActorPosition(NewPosition);
+    _Player->setActorPosition(NewPosition);
 }
 
 CActor* CActorStack::getActorInThisPosition(CPosition Position)
 {
-    if (Player->getActorPosition() == Position)
-        return Player;
+    if (_Player->getActorPosition() == Position)
+        return _Player;
 
-    for (CBaseMonster* Monster : StackOfMonster)
+    for (CBaseMonster* Monster : _StackOfMonster)
     {
         if (Monster->getActorPosition() == Position)
             return Monster;
@@ -34,18 +54,18 @@ CActor* CActorStack::getActorInThisPosition(CPosition Position)
 
 CActorAction* CActorStack::getPlayerAction()
 {
-    return Player->playActor();
+    return _Player->playActor();
 }
 
 CPosition CActorStack::getPlayerPosition()
 {
-    return Player->getActorPosition();
+    return _Player->getActorPosition();
 }
 
 std::vector<MonsterPositionForRender> CActorStack::getMonstersPosition()
 {
     std::vector<MonsterPositionForRender> Vector;
-    for (CBaseMonster* Monster : StackOfMonster)
+    for (CBaseMonster* Monster : _StackOfMonster)
     {
         Vector.push_back(MonsterPositionForRender{ Monster->getActorPosition() });
     }
