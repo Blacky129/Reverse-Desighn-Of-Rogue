@@ -37,7 +37,7 @@ public:
 
 	CActorAction* getPlayerAction();
 
-	CActorAction* getMonsterAction(bool* LastMonster);
+	CActorAction* getMonsterAction(bool* LastMonster, CMap* Map);
 
 	CPosition getPlayerPosition();
 

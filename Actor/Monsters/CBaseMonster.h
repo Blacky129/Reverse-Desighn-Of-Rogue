@@ -10,6 +10,8 @@ protected:
 	CPathFinder* _PathFinder;
 
 	CActor* _Goal;
+
+	bool _isActive;
 public:
 	CBaseMonster();
 
@@ -18,6 +20,10 @@ public:
 	CPosition getGoalPosition();
 
 	CPathFinder* getPathFinder();
+
+	void activateMonster();
+
+	bool getActive();
 
 	void setPathFinder(CPathFinder* PathFinder);
 private:

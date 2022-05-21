@@ -9,7 +9,10 @@ void CGameLogic::playPlayer(CActorStack* ActorsStack, CMap* Map, bool* PlayerExi
 		CActorAction* Action = ActorsStack->getPlayerAction();
 
 		if (Action->getType() == TypeOfAction::None)
+		{
+			delete Action;
 			continue;
+		}
 
 		CanEnd = canProvideAction(Action, Map);
 
@@ -26,10 +29,13 @@ void CGameLogic::playMonstersTurn(CActorStack* ActorsStack, CMap* Map)
 	bool LastMonster = false;
 	while (LastMonster == false)
 	{
-		CActorAction* Action = ActorsStack->getMonsterAction(&LastMonster);
+		CActorAction* Action = ActorsStack->getMonsterAction(&LastMonster, Map);
 
 		if (Action->getType() == TypeOfAction::None)
+		{
+			delete Action;
 			continue;
+		}
 
 		if (canProvideAction(Action, Map))
 			provideAction(Action, Map, nullptr, ActorsStack);

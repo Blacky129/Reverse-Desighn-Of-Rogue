@@ -51,6 +51,8 @@ public:
 
 	void clearHeroVision();
 
+	bool isInSameRoom(CPosition FirstPositopn, CPosition SecondPosition);
+
 private:
 	void updateVisibilityInRoom(CPosition HerpPosition);
 

@@ -28,10 +28,22 @@ void CActorStack::addMonster(CMap* Map)
     _MonsterTurn = 0;
 }
 
-CActorAction* CActorStack::getMonsterAction(bool* LastMonster)
+CActorAction* CActorStack::getMonsterAction(bool* LastMonster, CMap* Map)
 {
-    CActorAction* Action = _StackOfMonster[_MonsterTurn]->playActor();
-    
+    CActorAction* Action;
+
+    if (_StackOfMonster[_MonsterTurn]->getActive() == true)
+    {
+        Action = _StackOfMonster[_MonsterTurn]->playActor();
+    }
+    else
+    {
+        if (Map->isInSameRoom(_Player->getActorPosition(), _StackOfMonster[_MonsterTurn]->getActorPosition()))
+            _StackOfMonster[_MonsterTurn]->activateMonster();
+        
+        Action = new CActorAction{ _StackOfMonster[_MonsterTurn], TypeOfAction::None};
+    }
+
     if (_MonsterTurn == _StackOfMonster.size() - 1)
         *LastMonster = true;
 

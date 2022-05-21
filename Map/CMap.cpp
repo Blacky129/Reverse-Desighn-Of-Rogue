@@ -40,6 +40,22 @@ void CMap::clearHeroVision()
 	IndexMap->clearHeroVision();
 }
 
+bool CMap::isInSameRoom(CPosition FirstPosition, CPosition SecondPosition)
+{
+	if (abs(FirstPosition.X - SecondPosition.X) > 24 || abs(FirstPosition.Y - SecondPosition.Y) > 8)
+		return false;
+
+	for (CRoom* Room : RoomsOfLevel)
+	{
+		if (Room->isPositionInRoom(FirstPosition))
+		{
+			return Room->isPositionInRoom(SecondPosition);
+		}
+	}
+
+	return false;
+}
+
 void CMap::updateVisibilityInRoom(CPosition HerpPosition)
 {
 	int IndexOfRoom = getIndexOfRoomByPosition(HerpPosition);
