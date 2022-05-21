@@ -172,7 +172,6 @@
     <ClCompile Include="CPathFinder.cpp" />
     <ClCompile Include="CRandomGenrator.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Hero.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map\CIndexMap.cpp" />
     <ClCompile Include="Map\CMap.cpp" />
@@ -202,7 +201,6 @@
     <ClInclude Include="CPathFinder.h" />
     <ClInclude Include="CRandomGenrator.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="Hero.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Map\CIndexMap.h" />
     <ClInclude Include="Map\CMap.h" />

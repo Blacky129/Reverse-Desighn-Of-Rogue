@@ -3,7 +3,6 @@
 #include "CActorsStack.h"
 #include "Map/CMap.h"
 #include "Screen.h"
-#include "Hero.h"
 #include "CGameLogic.h"
 #include "CPathFinder.h"
 
