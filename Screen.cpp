@@ -68,9 +68,11 @@ void CScreen::updateWindow(CMap* Map, CActorStack* ActorsStack)
 
 	drawMap(Map, ScaleX, ScaleY);
 
+	drawMonsters(ActorsStack->getMonstersPosition(), Map, ScaleX, ScaleY);
+
 	drawHero(ActorsStack->getPlayerPosition(), ScaleX, ScaleY);
 
-	drawMonsters(ActorsStack->getMonstersPosition(), ScaleX, ScaleY);
+	Map->clearHeroVision();
 
 	SDL_RenderPresent(Renderer);
 }
@@ -99,10 +101,12 @@ void CScreen::drawHero(CPosition HeroPos, float ScaleX, float ScaleY)
 	SDL_RenderCopy(this->Renderer, this->Textures->getHeroTex(), NULL, &Position);
 }
 
-void CScreen::drawMonsters(std::vector<MonsterPositionForRender> MonstersPosition, float ScaleX, float ScaleY)
+void CScreen::drawMonsters(std::vector<MonsterPositionForRender> MonstersPosition, CMap* Map, float ScaleX, float ScaleY)
 {
 	for (MonsterPositionForRender Monster : MonstersPosition)
 	{
+		if (Map->isInHeroVision(Monster.Position) == false)
+			continue;
 		SDL_Rect Position{ std::round((Monster.Position.X + 1) * ScaleX * 16), std::round((Monster.Position.Y + 1) * ScaleY * 16), std::round(16 * ScaleX), std::round(16 * ScaleY) };
 		SDL_RenderCopy(this->Renderer, Textures->getMonsterTex(), NULL, &Position);
 	}

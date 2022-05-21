@@ -41,6 +41,10 @@ public:
 
 	void setHeroVision(CPosition Position);
 
+	void clearHeroVision();
+
+	bool inHeroVision(CPosition Position);
+
 private:
 	bool isPositionInMap(CPosition Position);
 };

@@ -1,8 +1,7 @@
 #include "Game.h"
 #include"Map/CMapGenerator.h"
 
-#include <iostream> //TODO For Debug
-
+#include <iostream> //TODO Delete
 CGame::CGame()
 {
 	_ActorsStack = new CActorStack;

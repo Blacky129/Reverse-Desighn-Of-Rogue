@@ -47,6 +47,10 @@ public:
 
 	void updateVisibility(CPosition HeroPosition);
 
+	bool isInHeroVision(CPosition Position);
+
+	void clearHeroVision();
+
 private:
 	void updateVisibilityInRoom(CPosition HerpPosition);
 

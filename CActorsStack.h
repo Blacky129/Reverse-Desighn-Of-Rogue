@@ -7,7 +7,7 @@
 #include <vector>
 
 class CMap;
-//class IObserver;
+
 struct MonsterPositionForRender
 {
 	CPosition Position;

@@ -30,6 +30,16 @@ void CMap::updateVisibility(CPosition HeroPosition)
 	}
 }
 
+bool CMap::isInHeroVision(CPosition Position)
+{
+	return IndexMap->inHeroVision(Position);
+}
+
+void CMap::clearHeroVision()
+{
+	IndexMap->clearHeroVision();
+}
+
 void CMap::updateVisibilityInRoom(CPosition HerpPosition)
 {
 	int IndexOfRoom = getIndexOfRoomByPosition(HerpPosition);
@@ -42,9 +52,11 @@ void CMap::updateVisibilityInRoom(CPosition HerpPosition)
 	for (int Y = Room->getTopLeftCornerPosition().Y; Y < Room->getTopLeftCornerPosition().Y + Room->getSizeOfRoom().Y; Y++)
 	{
 		for (int X = Room->getTopLeftCornerPosition().X; X < Room->getTopLeftCornerPosition().X + Room->getSizeOfRoom().X; X++)
+		{
 			IndexMap->setCellVisible(CPosition{ X, Y });
+			IndexMap->setHeroVision(CPosition{ X, Y });
+		}
 	}
-
 }
 
 void CMap::updateVisibilityHeroVision(CPosition HeroPosition)

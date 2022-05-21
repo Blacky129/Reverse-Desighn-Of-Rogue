@@ -12,7 +12,7 @@ TypeOfCell CIndexMap::getCellForScreen(CPosition Position)
 
 	if (Map[Position.Y][Position.X].HeroVision == true || Map[Position.Y][Position.X].Visible == true)
 	{
-		Map[Position.Y][Position.X].HeroVision = false;
+		//Map[Position.Y][Position.X].HeroVision = false;
 		return Map[Position.Y][Position.X].Type;
 	}
 
@@ -48,6 +48,25 @@ void CIndexMap::setHeroVision(CPosition Position)
 		return; //TODO Crete Error
 
 	Map[Position.Y][Position.X].HeroVision = true;
+}
+
+void CIndexMap::clearHeroVision()
+{
+	for (int Y = 0; Y < Size.Y; Y++)
+	{
+		for (int X = 0; X < Size.X; X++)
+		{
+			Map[Y][X].HeroVision = false;
+		}
+	}
+}
+
+bool CIndexMap::inHeroVision(CPosition Position)
+{
+	if (isPositionInMap(Position) == false)
+		return false;
+
+	return Map[Position.Y][Position.X].HeroVision;
 }
 
 bool CIndexMap::isPositionInMap(CPosition Position)
