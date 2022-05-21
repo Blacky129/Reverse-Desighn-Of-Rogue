@@ -5,8 +5,8 @@
 
 CGame::CGame()
 {
-	ActorsStack = new CActorStack;
-	GameLogic = new CGameLogic;
+	_ActorsStack = new CActorStack;
+	_GameLogic = new CGameLogic;
 	Screen = new CScreen;
 	GameMap = nullptr;
 	_PathFinder = new CPathFinder;
@@ -18,9 +18,9 @@ void CGame::startGame()
 	if (Screen->initSDL() == false)
 		return;
 
-	if (ActorsStack->createPlayer() == false)
+	if (_ActorsStack->createPlayer(this) == false)
 		return;
-	
+
 	//TODO: Intro 
 
 	GenerateLevel();
@@ -36,6 +36,17 @@ CGame::~CGame()
 	delete _PathFinder;
 }
 
+void CGame::onNotify(EVENT_TYPE Event)
+{
+	switch (Event)
+	{
+	case EVENT_TYPE::RERENDER_EVENT:
+		renderGraphic();
+	default:
+		break;
+	}
+}
+
 bool isWindowsSizeOrPositionChanges(CPosition PrevWindowSize, CPosition NewWindowSize,
 	CPosition PrevWindowPosition, CPosition NewWindowPosition)
 {
@@ -49,9 +60,9 @@ void CGame::GenerateLevel()
 	CMapGenerator MapGenerator;
 	GameMap = MapGenerator.createNewLevel(DEFAULT_COUNT_OF_ROOM);
 	_PathFinder->changeMap(GameMap);
-	ActorsStack->setPathFinder(_PathFinder);
-	ActorsStack->setPlayerPosition(GameMap->getStartPosition());
-	ActorsStack->addMonster(GameMap);
+	_ActorsStack->setPathFinder(_PathFinder);
+	_ActorsStack->setPlayerPosition(GameMap->getStartPosition());
+	_ActorsStack->addMonster(GameMap);
 }
 
 bool CGame::startRender()
@@ -64,21 +75,21 @@ bool CGame::startRender()
 void CGame::getPlayerInput()
 {
 	bool ExitFromLevel;
-	GameLogic->playPlayer(ActorsStack, GameMap, &ExitFromLevel);
+	_GameLogic->playPlayer(_ActorsStack, GameMap, &ExitFromLevel);
 }
 
 void CGame::renderGraphic()
 {
-	GameMap->updateVisibility(ActorsStack->getPlayerPosition());
+	GameMap->updateVisibility(_ActorsStack->getPlayerPosition());
 
-	Screen->updateWindow(GameMap, ActorsStack);
+	Screen->updateWindow(GameMap, _ActorsStack);
 }
 
 void CGame::provideGameLogic()
 {
 	getPlayerInput();
 
-	GameLogic->playMonstersTurn(ActorsStack, GameMap);
+	_GameLogic->playMonstersTurn(_ActorsStack, GameMap);
 }
 
 void CGame::startGameLoop()

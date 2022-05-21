@@ -3,13 +3,14 @@
 class CController;
 
 #include "CController.h"
+#include "../../ISubject.h"
 #include "Input/InputManager.h"
 #include "../Action/CActorAction.h"
 
 class CPlayer;
 class CActorAction;
 
-class CPlayerController : public CController
+class CPlayerController : public CController, public ISubject
 {
 private:
 	CInputManager* Input;

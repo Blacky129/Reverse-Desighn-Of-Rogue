@@ -5,6 +5,8 @@ enum class InputType
 {
 	Null,
 
+	WindowChanges,
+
 	Quit,
 
 	ExitLevel,

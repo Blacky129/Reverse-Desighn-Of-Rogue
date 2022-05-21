@@ -46,12 +46,21 @@ CPosition getVector(InputType Input)
 
 CActorAction* CPlayerController::actionActor()
 {
-    InputType CurrentInput = Input->getInput();
-	CActorAction* Result = new CActorAction(Owner, TypeOfAction::None);
+	bool RerenderEvent = false;
+	InputType CurrentInput;
+	do
+	{
+		CurrentInput = Input->getInput();
 
-	//CMovementOrAtack* TMP = new CMovementOrAtack(Owner, TypeOfAction::Movement);
+		if (CurrentInput == InputType::WindowChanges)
+			notify(EVENT_TYPE::RERENDER_EVENT);
+	} while (CurrentInput == InputType::WindowChanges);
+	CActorAction* Result = new CActorAction(Owner, TypeOfAction::None);
+	
 	switch (CurrentInput)
 	{
+	case InputType::WindowChanges:
+
 	case InputType::Quit:
 		break;
 	case InputType::ExitLevel:

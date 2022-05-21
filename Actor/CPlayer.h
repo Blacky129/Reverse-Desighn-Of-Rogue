@@ -5,8 +5,8 @@
 #include "Action/CActorAction.h"
 
 class CPlayerController;
-class CActorAction;
 class CController;
+class IObserver;
 
 class CPlayer : public CActor
 {
@@ -15,6 +15,8 @@ public:
 	CPlayer();
 
 	bool initInput();
+
+	void addObserverForController(IObserver* NewObserver);
 private:
 };
 

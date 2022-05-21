@@ -1,12 +1,13 @@
 #pragma once
 
+#include "IObsever.h"
 #include "CActorsStack.h"
 #include "Map/CMap.h"
 #include "Screen.h"
 #include "CGameLogic.h"
 #include "CPathFinder.h"
 
-class CGame
+class CGame : public IObserver
 {
 private:
 
@@ -18,9 +19,9 @@ private:
 
 	CMap* GameMap;
 
-	CGameLogic* GameLogic;
+	CGameLogic* _GameLogic;
 
-	CActorStack* ActorsStack;
+	CActorStack* _ActorsStack;
 
 	CPathFinder* _PathFinder;
 
@@ -46,5 +47,6 @@ public:
 
 	void renderGraphic();
 
+	void onNotify(EVENT_TYPE Event);
 private:
 };

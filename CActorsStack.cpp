@@ -7,10 +7,15 @@ void CActorStack::setPathFinder(CPathFinder* PathFinder)
         _PathFinder = PathFinder;
 }
 
-bool CActorStack::createPlayer()
+bool CActorStack::createPlayer(IObserver* NewObserver)
 { 
     _Player = new CPlayer;
-    return _Player->initInput();
+    
+    if (_Player->initInput() == false)
+        return false;
+
+    _Player->addObserverForController(NewObserver);
+    return true;
 }
 
 void CActorStack::addMonster(CMap* Map)

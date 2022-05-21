@@ -17,10 +17,21 @@ bool CInputManager::initInput()
 InputType CInputManager::getInput()
 {
     
-    while (SDL_WaitEvent(this->Input) != 0)
+    while (SDL_WaitEvent(Input) != 0)
     {
-        if (this->Input == NULL)
+        if (Input == NULL)
             continue;
+
+        if (Input->type == SDL_WINDOWEVENT)
+        {
+            switch (Input->window.event) 
+            {
+            case SDL_WINDOWEVENT_SIZE_CHANGED:
+            case SDL_WINDOWEVENT_MOVED:
+                return InputType::WindowChanges;
+            }
+        }
+
 
         if (this->Input->type == SDL_QUIT)
             return InputType::Quit;

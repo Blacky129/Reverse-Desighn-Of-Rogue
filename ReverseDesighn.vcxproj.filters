@@ -209,5 +209,11 @@
     <ClInclude Include="CPathFinder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="IObsever.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ISubject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

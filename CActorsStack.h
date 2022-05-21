@@ -7,14 +7,12 @@
 #include <vector>
 
 class CMap;
-
+//class IObserver;
 struct MonsterPositionForRender
 {
 	CPosition Position;
 	//TODO Type Of Monster
 };
-
-class CPlayer;
 
 class CActorStack
 {
@@ -29,7 +27,7 @@ private:
 public:
 	void setPathFinder(CPathFinder* PathFinder);
 
-	bool createPlayer();
+	bool createPlayer(IObserver* NewObserver);
 
 	void addMonster(CMap* Map);
 
