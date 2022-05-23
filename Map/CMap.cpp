@@ -19,10 +19,8 @@ void CMap::updateVisibility(CPosition HeroPosition)
 	case TypeOfCell::Door:
 	case TypeOfCell::Exit:
 	case TypeOfCell::Floor:
-		//update Visibility in Room
 		updateVisibilityInRoom(HeroPosition);
 	case TypeOfCell::Path:
-		//update Visibility Around
 		updateVisibilityHeroVision(HeroPosition);
 		return;
 	default:

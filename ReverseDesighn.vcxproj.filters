@@ -63,9 +63,6 @@
     <ClCompile Include="CRandomGenrator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\RogueTest\RogueTest\Map\CCell.cpp">
-      <Filter>Source Files\Map</Filter>
-    </ClCompile>
     <ClCompile Include="Map\CIndexMap.cpp">
       <Filter>Source Files\Map</Filter>
     </ClCompile>
@@ -114,17 +111,17 @@
     <ClCompile Include="Actor\Controller\CBaseAI.cpp">
       <Filter>Source Files\Actor\Controller</Filter>
     </ClCompile>
-    <ClCompile Include="Actor\Monsters\CBaseMonster.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CMonsterSpawner.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Actor\Action\CAtack.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CPathFinder.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor\Monsters\CBaseMonster.cpp">
+      <Filter>Source Files\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor\Action\CAtack.cpp">
+      <Filter>Source Files\Actor\Action</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
