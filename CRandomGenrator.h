@@ -5,9 +5,8 @@
 class CRandomGenrator
 {
 public:
-	int generateIntergerInRange(int Min, int Max);
 
-	int trowDice(unsigned int NumberOfDices, unsigned int TypeOfDice);
+	int generateIntergerInRange(int Min, int Max);
 
 private:
 	std::random_device Random;

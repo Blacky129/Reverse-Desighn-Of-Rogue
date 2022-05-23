@@ -169,6 +169,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\RogueTest\RogueTest\Map\CCell.cpp" />
     <ClCompile Include="Actor\Action\CActorAction.cpp" />
     <ClCompile Include="Actor\Action\CAtack.cpp" />
     <ClCompile Include="Actor\Action\CMoveOrAtack.cpp" />
